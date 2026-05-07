@@ -184,11 +184,11 @@ function ProjectList({ title, items }: { title: string; items: string[] }) {
 
 function ProjectModalBlock({ title, items }: { title: string; items: string[] }) {
   return (
-    <div className="border border-graphite-100 bg-graphite-50 p-6">
-      <h4 className="text-xl font-semibold text-graphite-950">{title}</h4>
+    <div className="border border-graphite-100 bg-[#f8f8f6] p-6 text-[#141516]">
+      <h4 className="text-xl font-semibold text-[#0b0c0d]">{title}</h4>
       <div className="mt-5 grid gap-3">
         {items.map((item) => (
-          <div key={item} className="flex gap-3 text-sm leading-6 text-graphite-600">
+          <div key={item} className="flex gap-3 text-sm leading-6 text-[#303337]">
             <Check className="mt-0.5 shrink-0 text-gold-600" size={16} />
             <span>{item}</span>
           </div>
