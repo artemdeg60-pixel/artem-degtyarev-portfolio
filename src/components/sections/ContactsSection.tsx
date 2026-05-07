@@ -58,8 +58,7 @@ export function ContactsSection({ showToast }: ContactsSectionProps) {
             <Reveal className="p-6 sm:p-10">
               <SectionHeading
                 eyebrow="Контакты"
-                title="Готов обсудить проект, роль или стажировку в digital-команде"
-                description="Открыт к задачам, где нужны структура, координация, ответственность за результат и интерес к современным инструментам управления."
+                title="Готов обсудить проекты или роль в вашей команде"
                 tone="dark"
               />
 
@@ -82,13 +81,6 @@ export function ContactsSection({ showToast }: ContactsSectionProps) {
                   <ContactRow icon={<Mail size={20} />} label="Email" value={personal.email} href={`mailto:${personal.email}`} />
                   <ContactRow icon={<Phone size={20} />} label="Телефон" value={personal.phone} href={`tel:${personal.phone.replace(/[^\d+]/g, "")}`} />
                   <ContactRow icon={<Send size={20} />} label="Telegram" value={personal.telegramHandle} href={personal.telegramUrl} />
-                </div>
-                <div className="mt-8 border-t border-white/10 pt-8">
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gold-300">Позиционирование</p>
-                  <p className="mt-3 text-lg leading-8 text-white/70">
-                    Развивающийся project manager с практическим управленческим бэкграундом, сильной коммуникацией и
-                    интересом к AI, цифровым продуктам и проектной поставке.
-                  </p>
                 </div>
               </div>
             </Reveal>
