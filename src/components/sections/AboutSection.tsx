@@ -1,5 +1,5 @@
 import { CheckCircle2, GraduationCap, TrendingUp } from "lucide-react";
-import { aboutMetrics, achievements, education, personal } from "../../data/siteContent";
+import { aboutMetrics, aboutParagraphs, achievements, education, personal } from "../../data/siteContent";
 import { Reveal } from "../ui/Reveal";
 import { SectionHeading } from "../ui/SectionHeading";
 
@@ -40,21 +40,9 @@ export function AboutSection() {
             <div className="grid gap-6">
               <div className="premium-panel p-6 sm:p-8">
                 <div className="grid gap-5 text-base leading-8 text-graphite-600">
-                  <p>
-                    Сейчас моя роль связана с координацией операционных и проектных процессов в сети магазинов и
-                    ломбардов «Золотой Стандарт». В работе я отвечаю за распределение задач, контроль сроков и качества,
-                    координацию команды, улучшение процессов и достижение результата по ключевым показателям.
-                  </p>
-                  <p>
-                    Переход в проектное управление для меня логичен: в операционной роли я всё больше занимался именно
-                    координацией людей, структурированием процессов, внедрением изменений и управлением результатом через
-                    систему, а не через ручной контроль.
-                  </p>
-                  <p>
-                    Моя сильная сторона — превращать разрозненные задачи в понятный порядок: цели, роли, сроки,
-                    договорённости, артефакты и контрольные точки. Дальше хочу развиваться в digital-проектах полного
-                    цикла, где бизнес-задача соединяется с продуктом, командой и технологической реализацией.
-                  </p>
+                  {aboutParagraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
                 </div>
               </div>
 
