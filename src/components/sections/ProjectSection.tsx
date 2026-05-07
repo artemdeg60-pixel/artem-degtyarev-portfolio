@@ -149,12 +149,12 @@ export function ProjectSection({ onNavigate }: ProjectSectionProps) {
             <ProjectModalBlock title="Артефакты и подход" items={projectData.artifacts} />
           </div>
 
-          <div className="border border-graphite-100 bg-white p-6">
+          <div className="border border-graphite-100 bg-[#f8f8f6] p-6 text-[#141516]">
             <div className="flex items-center gap-3">
               <FileText className="text-gold-600" size={22} />
-              <h4 className="text-xl font-semibold text-graphite-950">Управленческий вывод</h4>
+              <h4 className="text-xl font-semibold text-[#0b0c0d]">Управленческий вывод</h4>
             </div>
-            <p className="mt-4 text-base leading-8 text-graphite-600">
+            <p className="mt-4 text-base leading-8 text-[#303337]">
               Главная ценность проекта — в структурировании цифровой инициативы: цели продукта связаны с клиентским
               сервисом и операционной нагрузкой, а реализация описана через требования, этапы, артефакты, бюджет и
               управляемый план внедрения.
