@@ -29,10 +29,7 @@ export function Hero({ onNavigate }: HeroProps) {
           </div>
           <h1 className="mt-8 text-5xl font-semibold tracking-normal text-white sm:text-6xl lg:text-7xl">{personal.name}</h1>
           <p className="mt-4 text-2xl font-medium text-gold-300 sm:text-3xl">{personal.role}</p>
-          <p className="mt-7 max-w-2xl text-lg leading-8 text-white/70">
-            Координирую людей, структурирую процессы и перевожу управленческие задачи в понятные планы, артефакты и
-            цифровую логику реализации. Развиваюсь в project management на стыке бизнеса, продукта и AI-инструментов.
-          </p>
+          <div className="mt-7 min-h-[160px] max-w-2xl sm:min-h-[128px]" aria-hidden="true" />
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Button variant="dark" icon={<ArrowRight size={18} />} onClick={() => onNavigate("project")}>
