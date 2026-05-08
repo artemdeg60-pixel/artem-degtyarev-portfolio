@@ -12,6 +12,13 @@ interface DocumentsSectionProps {
 }
 
 type ActiveCategory = (typeof documentCategories)[number];
+type PreviewKind = "iframe" | "image";
+
+interface FilePreview {
+  kind: PreviewKind;
+  src: string;
+  note?: string;
+}
 
 export function DocumentsSection({ showToast }: DocumentsSectionProps) {
   const [activeCategory, setActiveCategory] = useState<ActiveCategory>("Все");
@@ -25,18 +32,15 @@ export function DocumentsSection({ showToast }: DocumentsSectionProps) {
     return portfolioFiles.filter((file) => file.category === activeCategory);
   }, [activeCategory]);
 
+  const selectedPreview = selectedFile ? getFilePreview(selectedFile) : null;
+
   const openFile = (file: PortfolioFile) => {
     if (!file.fileUrl) {
       showToast("Файл пока не добавлен. Замените путь в siteContent.ts.");
       return;
     }
 
-    if (file.type === "pdf") {
-      setSelectedFile(file);
-      return;
-    }
-
-    window.open(file.fileUrl, "_blank", "noopener,noreferrer");
+    setSelectedFile(file);
   };
 
   const downloadFile = (file: PortfolioFile) => {
@@ -101,17 +105,27 @@ export function DocumentsSection({ showToast }: DocumentsSectionProps) {
       </div>
 
       <Modal isOpen={Boolean(selectedFile)} title={selectedFile?.title ?? "Документ"} onClose={() => setSelectedFile(null)}>
-        {selectedFile ? (
+        {selectedFile && selectedPreview ? (
           <div className="grid gap-5">
-            <p className="text-sm leading-7 text-graphite-600">{selectedFile.description}</p>
-            <div className="h-[62vh] overflow-hidden border border-graphite-100 bg-graphite-50">
-              <iframe src={selectedFile.fileUrl} title={selectedFile.title} className="h-full w-full" />
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p className="text-sm leading-7 text-graphite-600">{selectedFile.description}</p>
+                {selectedPreview.note ? <p className="mt-2 text-xs leading-6 text-graphite-500">{selectedPreview.note}</p> : null}
+              </div>
+              <span className="w-fit shrink-0 border border-gold-500/30 bg-gold-500/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-gold-700">
+                {selectedFile.type}
+              </span>
+            </div>
+
+            <div className="h-[68vh] overflow-hidden border border-graphite-100 bg-graphite-50">
+              {selectedPreview.kind === "image" ? (
+                <img src={selectedPreview.src} alt={selectedFile.title} className="h-full w-full object-contain" />
+              ) : (
+                <iframe src={selectedPreview.src} title={selectedFile.title} className="h-full w-full bg-white" />
+              )}
             </div>
             {selectedFile.fileUrl ? (
               <div className="flex flex-col gap-3 sm:flex-row">
-                <Button href={selectedFile.fileUrl} target="_blank" rel="noreferrer" icon={<ExternalLink size={18} />}>
-                  Открыть в новой вкладке
-                </Button>
                 <Button variant="secondary" onClick={() => downloadFile(selectedFile)} icon={<Download size={18} />}>
                   Скачать
                 </Button>
@@ -122,6 +136,67 @@ export function DocumentsSection({ showToast }: DocumentsSectionProps) {
       </Modal>
     </section>
   );
+}
+
+function getPublicFileUrl(fileUrl: string) {
+  if (/^https?:\/\//i.test(fileUrl)) {
+    return fileUrl;
+  }
+
+  const cleanPath = fileUrl.replace(/^\.?\//, "");
+
+  if (typeof window === "undefined") {
+    return cleanPath;
+  }
+
+  const basePath = window.location.pathname.endsWith("/")
+    ? window.location.pathname
+    : `${window.location.pathname.replace(/\/[^/]*$/, "")}/`;
+
+  return new URL(cleanPath, `${window.location.origin}${basePath}`).href;
+}
+
+function getFilePreview(file: PortfolioFile): FilePreview | null {
+  if (!file.fileUrl) {
+    return null;
+  }
+
+  const publicFileUrl = getPublicFileUrl(file.fileUrl);
+
+  if (isImageType(file.type)) {
+    return {
+      kind: "image",
+      src: publicFileUrl,
+    };
+  }
+
+  if (file.type === "pdf") {
+    return {
+      kind: "iframe",
+      src: publicFileUrl,
+    };
+  }
+
+  if (isOfficeType(file.type)) {
+    return {
+      kind: "iframe",
+      src: `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(publicFileUrl)}`,
+      note: "Предпросмотр Office-документов открывается во встроенном viewer. Скачивание начнётся только по кнопке «Скачать».",
+    };
+  }
+
+  return {
+    kind: "iframe",
+    src: publicFileUrl,
+  };
+}
+
+function isImageType(type: PortfolioFile["type"]) {
+  return type === "png" || type === "jpg" || type === "jpeg" || type === "webp";
+}
+
+function isOfficeType(type: PortfolioFile["type"]) {
+  return type === "doc" || type === "docx" || type === "ppt" || type === "pptx" || type === "xls" || type === "xlsx";
 }
 
 function FileCard({
