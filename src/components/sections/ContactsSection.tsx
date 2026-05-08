@@ -51,9 +51,9 @@ export function ContactsSection({ showToast }: ContactsSectionProps) {
   };
 
   return (
-    <section id="contacts" className="bg-white py-20 sm:py-24">
+    <section id="contacts" className="section-cut bg-[var(--color-bg)] py-24 text-[var(--color-text-primary)] sm:py-28">
       <div className="section-shell">
-        <div className="overflow-hidden border border-graphite-100 bg-graphite-950 text-white shadow-premium">
+        <div className="premium-panel overflow-hidden">
           <div className="grid gap-0 lg:grid-cols-[0.98fr_1.02fr]">
             <Reveal className="p-6 sm:p-10">
               <SectionHeading
@@ -62,7 +62,7 @@ export function ContactsSection({ showToast }: ContactsSectionProps) {
                 tone="dark"
               />
 
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Button href={personal.telegramUrl} target="_blank" rel="noreferrer" variant="dark" icon={<Send size={18} />}>
                   Написать в Telegram
                 </Button>
@@ -76,7 +76,7 @@ export function ContactsSection({ showToast }: ContactsSectionProps) {
             </Reveal>
 
             <Reveal delay={0.08}>
-              <div className="grid h-full border-t border-white/10 bg-white/[0.04] p-6 sm:p-10 lg:border-l lg:border-t-0">
+              <div className="grid h-full border-t border-[var(--color-border)] bg-[rgba(247,242,232,0.035)] p-6 sm:p-10 lg:border-l lg:border-t-0">
                 <div className="grid gap-4">
                   <ContactRow icon={<Mail size={20} />} label="Email" value={personal.email} href={`mailto:${personal.email}`} />
                   <ContactRow icon={<Phone size={20} />} label="Телефон" value={personal.phone} href={`tel:${personal.phone.replace(/[^\d+]/g, "")}`} />
@@ -97,12 +97,12 @@ function ContactRow({ icon, label, value, href }: { icon: JSX.Element; label: st
       href={href}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noreferrer" : undefined}
-      className="focus-ring flex items-center gap-4 border border-white/10 bg-white/[0.04] p-4 transition hover:border-gold-400/40 hover:bg-white/[0.07]"
+      className="focus-ring card-lift flex items-center gap-4 border border-[rgba(247,242,232,0.12)] bg-[rgba(247,242,232,0.04)] p-4"
     >
-      <span className="inline-flex size-11 shrink-0 items-center justify-center border border-gold-400/30 text-gold-300">{icon}</span>
+      <span className="inline-flex size-11 shrink-0 items-center justify-center border border-[var(--color-border)] text-[var(--color-accent)]">{icon}</span>
       <span>
-        <span className="block text-xs font-semibold uppercase tracking-[0.18em] text-white/40">{label}</span>
-        <span className="mt-1 block break-all text-sm font-semibold text-white">{value}</span>
+        <span className="block text-xs font-extrabold uppercase text-[var(--color-text-secondary)] tracking-[0.16em]">{label}</span>
+        <span className="mt-1 block break-all text-sm font-bold text-[var(--color-text-primary)]">{value}</span>
       </span>
     </a>
   );

@@ -9,6 +9,7 @@ import { ProjectSection } from "./components/sections/ProjectSection";
 import { SkillsSection } from "./components/sections/SkillsSection";
 import { Toast, type ToastState } from "./components/ui/Toast";
 import { navItems } from "./data/siteContent";
+import { initStudioMotion } from "./lib/studioMotion";
 import type { SectionId } from "./types/site";
 
 function App() {
@@ -34,7 +35,10 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const cleanupMotion = initStudioMotion();
+
     return () => {
+      cleanupMotion();
       if (toastTimerRef.current) {
         window.clearTimeout(toastTimerRef.current);
       }

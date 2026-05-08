@@ -70,11 +70,11 @@ export const certificates = [
   "Soft Skills для проектного управления",
   "Инструменты ИИ для работы менеджера проекта",
   "Методологии управления проектами",
-  "Проектная документация",
   "Работа менеджера проекта с продуктом",
   "Инициация и планирование проекта",
   "Контроль реализации и завершение проекта",
   "Управление командой проекта",
+  "Введение в управление проектами",
 ];
 
 export const skillTabs: SkillTab[] = [
@@ -168,18 +168,16 @@ export const projectData: ProjectData = {
   ],
   artifacts: [
     "паспорт проекта",
-    "SMART-цели",
     "границы проекта",
     "ИСР / WBS",
     "диаграмма Ганта",
     "бюджет проекта",
     "сроки и план реализации",
-    "проектная документация",
   ],
   metrics: [
     { value: "84", label: "рабочих дня длительность проекта" },
     { value: "4", label: "ключевые цели продукта" },
-    { value: "8", label: "подготовленных артефактов" },
+    { value: "6", label: "подготовленных артефактов" },
     { value: "6", label: "блоков проектных задач" },
   ],
   process: ["Инициация", "Требования", "Сценарии", "План", "Бюджет", "Внедрение"],
@@ -304,15 +302,6 @@ export const portfolioFiles: PortfolioFile[] = [
     type: "pdf",
     category: "Сертификаты",
     fileUrl: "files/certificates/project-management-methodologies.pdf",
-    status: "available",
-  },
-  {
-    id: "certificate-project-documentation",
-    title: "Проектная документация",
-    description: "PDF-сертификат по проектной документации.",
-    type: "pdf",
-    category: "Сертификаты",
-    fileUrl: "files/certificates/project-documentation-certificate.pdf",
     status: "available",
   },
   {

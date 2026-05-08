@@ -22,16 +22,20 @@ type ButtonAsLink = SharedProps &
 type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const variantStyles: Record<Variant, string> = {
-  primary: "bg-graphite-900 text-white hover:bg-graphite-800 border-graphite-900",
-  secondary: "bg-white text-graphite-900 hover:bg-graphite-50 border-graphite-200",
-  ghost: "bg-transparent text-graphite-800 hover:bg-white/70 border-transparent",
-  dark: "bg-gold-500 text-graphite-950 hover:bg-gold-400 border-gold-500",
-  outlineDark: "bg-transparent text-white hover:bg-white/10 border-white/10",
+  primary:
+    "border-[var(--color-text-dark)] bg-[var(--color-text-dark)] text-[var(--color-paper)] hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-[var(--color-text-dark)]",
+  secondary:
+    "border-[rgba(20,19,15,0.2)] bg-[var(--color-paper)] text-[var(--color-text-dark)] hover:border-[var(--color-accent)] hover:bg-white",
+  ghost: "border-transparent bg-transparent text-[var(--color-text-dark)] hover:border-[rgba(20,19,15,0.2)] hover:bg-white/45",
+  dark:
+    "border-[var(--color-accent)] bg-[var(--color-accent)] text-[var(--color-text-dark)] shadow-[8px_8px_0_rgba(214,166,69,0.18)] hover:bg-[var(--color-accent-strong)]",
+  outlineDark:
+    "border-[rgba(247,242,232,0.18)] bg-transparent text-[var(--color-text-primary)] hover:border-[var(--color-accent)] hover:bg-[var(--color-accent-muted)]",
 };
 
 export function Button({ children, icon, variant = "primary", className = "", ...props }: ButtonProps) {
   const classes = [
-    "focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-sm border px-5 py-3 text-sm font-semibold transition duration-200 disabled:cursor-not-allowed disabled:opacity-50",
+    "button-base disabled:cursor-not-allowed disabled:opacity-50",
     variantStyles[variant],
     className,
   ].join(" ");

@@ -59,8 +59,8 @@ export function DocumentsSection({ showToast }: DocumentsSectionProps) {
   };
 
   return (
-    <section id="documents" className="bg-graphite-50 py-20 sm:py-24">
-      <div className="section-shell">
+    <section id="documents" className="paper-section py-24 sm:py-28">
+      <div className="paper-inner section-shell">
         <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
           <Reveal>
             <SectionHeading
@@ -80,10 +80,10 @@ export function DocumentsSection({ showToast }: DocumentsSectionProps) {
                     key={category}
                     type="button"
                     className={[
-                      "focus-ring rounded-sm border px-4 py-3 text-sm font-semibold transition",
+                      "focus-ring border px-4 py-3 text-sm font-extrabold uppercase tracking-[0.07em] transition",
                       isActive
-                        ? "border-graphite-950 bg-graphite-950 text-white"
-                        : "border-graphite-200 bg-white text-graphite-700 hover:border-gold-500/40 hover:text-graphite-950",
+                        ? "border-[var(--color-text-dark)] bg-[var(--color-text-dark)] text-[var(--color-paper)]"
+                        : "border-[rgba(20,19,15,0.16)] bg-[rgba(255,255,255,0.44)] text-[var(--color-text-muted-dark)] hover:border-[var(--color-accent)] hover:text-[var(--color-text-dark)]",
                     ].join(" ")}
                     onClick={() => setActiveCategory(category)}
                   >
@@ -109,15 +109,15 @@ export function DocumentsSection({ showToast }: DocumentsSectionProps) {
           <div className="grid gap-5">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <p className="text-sm leading-7 text-graphite-600">{selectedFile.description}</p>
-                {selectedPreview.note ? <p className="mt-2 text-xs leading-6 text-graphite-500">{selectedPreview.note}</p> : null}
+                <p className="text-sm font-medium leading-7 text-[var(--color-text-muted-dark)]">{selectedFile.description}</p>
+                {selectedPreview.note ? <p className="mt-2 text-xs font-medium leading-6 text-[var(--color-text-muted-dark)]">{selectedPreview.note}</p> : null}
               </div>
-              <span className="w-fit shrink-0 border border-gold-500/30 bg-gold-500/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-gold-700">
+              <span className="w-fit shrink-0 border border-[var(--color-border)] bg-[var(--color-accent-muted)] px-3 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-[var(--color-text-dark)]">
                 {selectedFile.type}
               </span>
             </div>
 
-            <div className="h-[68vh] overflow-hidden border border-graphite-100 bg-graphite-50">
+            <div className="h-[68vh] overflow-hidden border border-[rgba(20,19,15,0.14)] bg-[var(--color-paper-soft)]">
               {selectedPreview.kind === "image" ? (
                 <img src={selectedPreview.src} alt={selectedFile.title} className="h-full w-full object-contain" />
               ) : (
@@ -209,40 +209,40 @@ function FileCard({
   onDownload: (file: PortfolioFile) => void;
 }) {
   return (
-    <article className="group flex h-full flex-col overflow-hidden border border-graphite-100 bg-white shadow-subtle transition duration-200 hover:-translate-y-1 hover:border-gold-500/40 hover:shadow-premium">
-      <div className="relative aspect-[16/10] overflow-hidden bg-graphite-900">
+    <article className="group card-lift flex h-full flex-col overflow-hidden border border-[rgba(20,19,15,0.14)] bg-[rgba(255,255,255,0.54)] shadow-subtle">
+      <div className="relative aspect-[16/10] overflow-hidden bg-[var(--color-bg)]">
         {file.previewUrl ? (
           <img src={file.previewUrl} alt={`Превью: ${file.title}`} className="h-full w-full object-cover" />
         ) : (
-          <div className="flex h-full items-center justify-center bg-[linear-gradient(135deg,#141516,#303337)]">
+          <div className="flex h-full items-center justify-center bg-[linear-gradient(135deg,#0d0d0b,#211f19)]">
             <div className="grid place-items-center gap-4 text-center">
-              <div className="inline-flex size-16 items-center justify-center border border-gold-400/30 bg-white/5 text-gold-300">
+              <div className="inline-flex size-16 items-center justify-center border border-[var(--color-border)] bg-[rgba(247,242,232,0.05)] text-[var(--color-accent)]">
                 {getFileIcon(file.category)}
               </div>
-              <span className="text-xs font-semibold uppercase tracking-[0.22em] text-white/50">{file.type}</span>
+              <span className="text-xs font-extrabold uppercase text-[var(--color-text-secondary)] tracking-[0.18em]">{file.type}</span>
             </div>
           </div>
         )}
         <div className="absolute left-4 top-4 flex gap-2">
-          <span className="bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-graphite-950">{file.type}</span>
-          <span className="bg-gold-500 px-3 py-1.5 text-xs font-semibold text-graphite-950">{file.category}</span>
+          <span className="bg-[var(--color-paper)] px-3 py-1.5 text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--color-text-dark)]">{file.type}</span>
+          <span className="bg-[var(--color-accent)] px-3 py-1.5 text-xs font-extrabold text-[var(--color-text-dark)]">{file.category}</span>
         </div>
       </div>
 
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-start justify-between gap-4">
-          <h3 className="text-xl font-semibold text-graphite-950">{file.title}</h3>
+          <h3 className="text-xl font-bold leading-snug text-[var(--color-text-dark)]">{file.title}</h3>
           {file.status === "planned" ? (
-            <span className="border border-graphite-200 px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-graphite-500">
+            <span className="border border-[rgba(20,19,15,0.18)] px-2 py-1 text-[11px] font-extrabold uppercase tracking-[0.14em] text-[var(--color-text-muted-dark)]">
               скоро
             </span>
           ) : null}
         </div>
-        <p className="mt-3 flex-1 text-sm leading-6 text-graphite-500">{file.description}</p>
+        <p className="mt-3 flex-1 text-sm font-medium leading-6 text-[var(--color-text-muted-dark)]">{file.description}</p>
         <div className="mt-5 grid grid-cols-2 gap-3">
           <button
             type="button"
-            className="focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-sm border border-graphite-950 bg-graphite-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-graphite-800"
+            className="button-base min-h-11 border-[var(--color-text-dark)] bg-[var(--color-text-dark)] px-4 text-[var(--color-paper)] hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-[var(--color-text-dark)]"
             onClick={() => onOpen(file)}
           >
             <ExternalLink size={17} />
@@ -250,7 +250,7 @@ function FileCard({
           </button>
           <button
             type="button"
-            className="focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-sm border border-graphite-200 bg-white px-4 py-3 text-sm font-semibold text-graphite-800 transition hover:bg-graphite-50"
+            className="button-base min-h-11 border-[rgba(20,19,15,0.2)] bg-transparent px-4 text-[var(--color-text-dark)] hover:border-[var(--color-accent)] hover:bg-white/50"
             onClick={() => onDownload(file)}
           >
             <Download size={17} />

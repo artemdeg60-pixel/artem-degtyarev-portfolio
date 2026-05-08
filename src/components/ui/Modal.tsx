@@ -60,7 +60,7 @@ export function Modal({ isOpen, title, onClose, children }: ModalProps) {
     <AnimatePresence>
       {isOpen ? (
         <motion.div
-          className="fixed inset-0 z-[80] flex items-center justify-center bg-graphite-950/70 px-4 py-6 backdrop-blur-sm"
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-[rgba(13,13,11,0.76)] px-4 py-6 backdrop-blur-md"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -69,7 +69,7 @@ export function Modal({ isOpen, title, onClose, children }: ModalProps) {
         >
           <motion.div
             ref={dialogRef}
-            className="max-h-[88vh] w-full max-w-4xl overflow-hidden rounded-sm border border-white/10 bg-white shadow-premium"
+            className="max-h-[88vh] w-full max-w-5xl overflow-hidden border border-[var(--color-border)] bg-[var(--color-paper)] shadow-[0_32px_120px_rgba(0,0,0,0.45)]"
             initial={{ opacity: 0, y: 24, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.98 }}
@@ -79,13 +79,13 @@ export function Modal({ isOpen, title, onClose, children }: ModalProps) {
             aria-labelledby="modal-title"
             onMouseDown={(event) => event.stopPropagation()}
           >
-            <div className="flex items-center justify-between border-b border-graphite-100 px-5 py-4 sm:px-7">
-              <h3 id="modal-title" className="text-lg font-semibold text-graphite-950">
+            <div className="flex items-center justify-between border-b border-[rgba(20,19,15,0.14)] px-5 py-4 sm:px-7">
+              <h3 id="modal-title" className="text-lg font-bold leading-tight text-[var(--color-text-dark)]">
                 {title}
               </h3>
               <button
                 ref={closeButtonRef}
-                className="focus-ring inline-flex size-10 items-center justify-center rounded-sm border border-graphite-100 text-graphite-600 transition hover:bg-graphite-50 hover:text-graphite-950"
+                className="focus-ring inline-flex size-10 items-center justify-center border border-[rgba(20,19,15,0.14)] text-[var(--color-text-muted-dark)] transition hover:border-[var(--color-accent)] hover:bg-white/50 hover:text-[var(--color-text-dark)]"
                 type="button"
                 aria-label="Закрыть окно"
                 onClick={onClose}

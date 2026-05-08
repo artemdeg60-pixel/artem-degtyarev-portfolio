@@ -24,12 +24,12 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["Inter", "Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
-        display: ["Georgia", "Times New Roman", "ui-serif", "serif"],
+        sans: ["var(--font-body)", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        premium: "0 24px 80px rgba(20, 21, 22, 0.12)",
-        subtle: "0 14px 40px rgba(20, 21, 22, 0.08)",
+        premium: "var(--shadow-soft)",
+        subtle: "0 14px 44px rgba(0, 0, 0, 0.18)",
       },
     },
   },
