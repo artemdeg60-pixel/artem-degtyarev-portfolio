@@ -396,24 +396,6 @@ export const portfolioFiles: PortfolioFile[] = [
     fileUrl: "files/project/timeline.docx",
     status: "available",
   },
-  {
-    id: "smart",
-    title: "SMART-цели",
-    description: "Формализация целей проекта по SMART-подходу.",
-    type: "docx",
-    category: "Документы",
-    fileUrl: "files/project/smart.docx",
-    status: "available",
-  },
-  {
-    id: "process-documentation",
-    title: "Проектная документация",
-    description: "PDF-материал из набора проектных артефактов, открывается в модальном просмотре.",
-    type: "pdf",
-    category: "Документы",
-    fileUrl: "files/project/process-documentation.pdf",
-    status: "available",
-  },
 ];
 
 export const documentCategories = ["Все", "Документы", "Сертификаты", "Презентации", "Таблицы", "Изображения"] as const;
